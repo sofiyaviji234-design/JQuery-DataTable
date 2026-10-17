@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JQUERY</title>
+<script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+<link href="https://cdn.datatables.net/v/dt/dt-3.0.0/datatables.min.css" rel="stylesheet">
+<script src="https://cdn.datatables.net/v/dt/dt-3.0.0/datatables.min.js" ></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Jquery Data Table</h1>
+
+<input type="number" id="student1" placeholder="Rollnumber"><br>
+<input type="text" id="student2" placeholder="Name"><br>
+<button id="student3" onclick="add()">Add</button><br>
+<br>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">student details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label" >Name</label>
+          <input type="text" class="form-control" id="Editname" placeholder="Enter Name">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Roll Number</label>
+          <input type="text" class="form-control" id="Editroll" placeholder="Enter Roll Number">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">ID</label>
+          <input type="text"  class="form-control"  id="texthidden" placeholder="Enter ID">
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button"  onclick ="saveStudent()" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table border="1" id="myTable">
+<thead>
+    <th>Rollno</th>
+    <th>Name</th>
+    <th>Edit</th>
+    <th>Delete</th>
+</thead>
+<tbody>
+<tr>
+    <td>101</td>
+    <td>AAA</td>
+    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Edit
+</button></td>
+    <td><button onclick="delstudent(this)">Delete</button></td>
+</tr>
+</tbody>
+</table>
+
+<script>
+/*
+$(document).ready(function(){
+const table = new DataTable('#myTable');
+});
+
+*/
+const table = new DataTable('#myTable');
+
+counter=3;
+function add()
+{
+var srollno=document.getElementById("student1").value;
+var sname=document.getElementById("student2").value;
+
+// alert(sname);
+s=table.row.add({0:srollno,1:sname,
+2:`<button type="button" id="${counter}" onclick="editstudent(this)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Edit
+</button>`,
+3:`<input type=button value="delete" id="${counter}" onclick="delstudent(this)">`}).draw()
+s.node().id=counter;
+
+counter+=1;
+table.draw(true);
+srollno.value=""
+sname.value=""
+
+}
+function delstudent(btn) {
+    table.row(btn.closest('tr')).remove().draw(false);
+}
+let currentRow = null;
+function editstudent(btn)
+{
+   // alert(id)
+ 
+  let row = btn.closest("tr");
+ let mydata = table.row(row).data();
+
+    document.getElementById("Editroll").value = mydata[0];
+    document.getElementById("Editname").value = mydata[1];
+    document.getElementById("txthidden").value = mydata[1];
+
+
+document.getElementById("txthidden").value=btn
+}
+function saveStudent()
+{
+    let roll = document.getElementById("Editroll").value;
+    let name = document.getElementById("Editname").value;
+
+    let rowData = table.row(currentRow).data(); 
+
+    rowData[0] = roll;
+    rowData[1] = name;
+
+    table.row(currentRow).data(rowData).draw(false);
+
+    // Close Modal
+    var modal = bootstrap.Modal.getInstance(document.getElementById("exampleModal"));
+    modal.hide();
+}
+
+</script> 
+</body>
+</html>
+
+
+
+

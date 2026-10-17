@@ -1,0 +1,176 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f0ff, #fff8e7);
+    padding: 30px;
+    color: #352653;
+}
+
+h1 {
+    text-align: center;
+    color: #7041c5;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+/* Input Fields */
+#student1,
+#student2 {
+    display: block;
+    width: 300px;
+    padding: 12px;
+    margin: 12px auto;
+    border: 1px solid #d6c5f5;
+    border-radius: 10px;
+    outline: none;
+    background: #fffdf7;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+#student1:focus,
+#student2:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 8px #d6c5f5;
+}
+
+/* Add Button */
+#student3 {
+    display: block;
+    width: 300px;
+    padding: 12px;
+    margin: 15px auto 30px;
+    background: linear-gradient(135deg, #8b5cf6, #6336b5);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+#student3:hover {
+    background: linear-gradient(135deg, #7041c5, #512b96);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px #d6c5f5;
+}
+
+/* Table Card */
+#myTable_wrapper {
+    background: #fffdf7;
+    padding: 22px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px #ddd0ef;
+    overflow-x: auto;
+}
+
+/* Table */
+#myTable {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 5px !important;
+}
+
+#myTable thead th {
+    background: linear-gradient(135deg, #7041c5, #9b7be8);
+    color: white;
+    padding: 15px;
+    border: none;
+    text-align: center;
+}
+
+#myTable tbody td {
+    background: #f8f3ff;
+    padding: 13px;
+    text-align: center;
+    border: none;
+}
+
+#myTable tbody tr:nth-child(even) td {
+    background: #fff8e7;
+}
+
+#myTable tbody tr:hover td {
+    background: #ede3ff;
+    transition: 0.3s;
+}
+
+/* Edit Button */
+#myTable .btn-primary {
+    background: #8b5cf6;
+    border: none;
+    border-radius: 7px;
+}
+
+#myTable .btn-primary:hover {
+    background: #6336b5;
+}
+
+/* Delete Button */
+#myTable button:not(.btn-primary),
+#myTable input[type="button"] {
+    background: #e87991;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+/* Search & Dropdown */
+#myTable_wrapper input[type="search"],
+#myTable_wrapper select {
+    padding: 8px 10px;
+    border: 1px solid #d6c5f5;
+    border-radius: 8px;
+    background: white;
+    outline: none;
+}
+
+/* Modal */
+.modal-header {
+    background: linear-gradient(135deg, #7041c5, #9b7be8);
+    color: white;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.modal-body {
+    background: #fffdf7;
+}
+
+.modal-footer {
+    background: #f8f3ff;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+    }
+
+    #student1,
+    #student2,
+    #student3 {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    #myTable_wrapper {
+        padding: 10px;
+    }
+
+    #myTable th,
+    #myTable td {
+        padding: 9px;
+        font-size: 12px;
+    }
+}
+
