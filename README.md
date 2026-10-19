@@ -11,7 +11,10 @@ A simple project showcasing jQuery DataTable integration.
 - Pagination
 
 ## Technologies Used
+- HTML
 - CSS
+- Bootsrap
+- Javascript
 - jQuery
 
 ## Developed By
